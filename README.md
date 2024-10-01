@@ -1,2 +1,1 @@
-# API-Metal
-API do Metal
+# API-academia

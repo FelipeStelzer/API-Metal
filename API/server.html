@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Chat bot Pra ficar bombado</h1>
+  
+  <!-- Container to display the chat -->
+  <div id="chat-container">
+    <div id="response"></div>
+    <textarea id="user-input" placeholder="Digite sua mensagem..."></textarea>
+    <button id="send-button">Enviar</button>
+  </div>
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+
+    // Fetch your API_KEY
+    const API_KEY = "AIzaSyAJ78PyaPNII9w-SXN0_p6DFM3jT86zWJU";
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    // Reference to the HTML elements
+    const responseDiv = document.getElementById('response');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    // Initialize with a welcome message
+    const initialPrompt = "Agora você é um nutricionista fitness que ajuda com dicas de alimentação. As dicas devem ser divertidas. " +
+      "Regra 1 = você não responde coisas diferentes disso, ou seja, coisas que não tenham a ver com alimentação e saúde. (Seu nome é Rob)" +
+      " Vamos iniciar o atendimento dos seus clientes?";
+    
+    // Function to handle user input
+    async function handleUserInput() {
+      const userPrompt = userInput.value;
+      if (!userPrompt.trim()) return;
+
+      // Append user input to chat
+      responseDiv.innerHTML += `<div><strong>Você:</strong> ${userPrompt}</div>`;
+      userInput.value = '';
+
+      // Generate response from the model
+      const promptcompleto = initialPrompt + "\nUsuário: " + userPrompt;
+      try {
+        const result = await model.generateContent(promptcompleto);
+        const aiResponse = result.response.text();
+        
+        // Append AI response to chat
+        responseDiv.innerHTML += `<div><strong>Rob:</strong> ${aiResponse}</div>`;
+        responseDiv.scrollTop = responseDiv.scrollHeight; // Auto-scroll to latest message
+      } catch (error) {
+        console.error('Erro ao gerar resposta:', error);
+        responseDiv.innerHTML += `<div><strong>Rob:</strong> Desculpe, algo deu errado.</div>`;
+      }
+    }
+
+    // Add event listener to the button
+    sendButton.addEventListener('click', handleUserInput);
+
+    // Optional: Handle Enter key press for sending message
+    userInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleUserInput();
+      }
+    });
+  </script>
+</body>
+</html>
