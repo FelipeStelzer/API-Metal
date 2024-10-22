@@ -1,83 +1,103 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #36173d;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  #chat-container {
-    width: 100%;
-    max-width: 600px;
-    background-color: #ff4845;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    height: 80%;
-  }
-  
-  h1 {
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-    font-size: 1.8rem;
-    color: #ff745f;
-    margin-bottom: 20px;
-  }
-  
-  #response {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ffec5e;
-    border-radius: 4px;
-    background-color: #ffec5e;
-    margin-bottom: 10px;
-    overflow-y: auto;
-    font-size: 1rem;
-  }
-  
-  #user-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-  
-  #send-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #9fb39b;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #send-button:hover {
-    background-color: #357abd;
-  }
-  
-  #response div {
-    margin-bottom: 10px;
-  }
-  
-  #response div strong {
-    color: #4a90e2;
-  }
-  
-  textarea:focus, button:focus {
-    outline: none;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#chat-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 80%;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size: 2rem;
+  color: #ffb74d;
+  margin-bottom: 20px;
+}
+
+#response {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #424242;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  font-size: 1rem;
+  border: 1px solid #ffb74d;
+}
+
+#user-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+#send-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff7043;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+  background-color: #d84315;
+}
+
+#response div {
+  margin-bottom: 10px;
+}
+
+#response div strong {
+  color: #ffb74d;
+}
+
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.container {
+  display: flex;               /* Habilita o Flexbox */
+  align-items: center;        /* Alinha os itens verticalmente no centro */
+  justify-content: space-between; /* Espaça os itens com espaço igual */
+}
+
+.chatzin {
+  font-size: 24px;            /* Tamanho da fonte */
+  margin-right: 10px;         /* Espaço entre o texto e a imagem */
+}
+
+.custom-image {
+  width: 500px;                /* Largura da imagem (ajuste conforme necessário) */
+  height: auto;               /* Mantém a proporção da imagem */
+  cursor: pointer;            /* Adiciona um cursor de ponteiro ao passar sobre a imagem */
+}
+
   

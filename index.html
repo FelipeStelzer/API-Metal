@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <title>Chatzin do Metal</title>
 </head>
 
 <body>
-  <h1>Chatzin do Metal</h1>
+  <div class="container">
+    <img class="custom-image" src="https://i.pinimg.com/736x/f8/89/22/f88922d72fd43d08e7b69f38928e1487.jpg">
+</div>
 
   <!-- Container to display the chat -->
   <div id="chat-container">
@@ -57,8 +59,6 @@
         const result = await model.generateContent(promptcompleto);
         const aiResponse = result.response.text();
 
-        //adicionar uma chamada para o end point localhost:5000/api/mensagem enviando dados para armazenar a conversa no mongo db     const { usuario, mensagem } = req.body;
-
         // Prepare data to send to the server
         const mensagemData = {
           usuario: userPrompt,
@@ -81,11 +81,9 @@
           },
         });
 
-        
         const data = await response.json();
         document.getElementById('response').innerText =
           `IP: ${data.ip}, Timestamp: ${data.timestamp}`;
-
 
         // Append AI response to chat
         responseDiv.innerHTML += `<div><strong>Rob:</strong> ${aiResponse}</div>`;
@@ -94,9 +92,6 @@
         console.error('Erro ao gerar resposta:', error);
         responseDiv.innerHTML += `<div><strong>Rob:</strong> Desculpe, algo deu errado.</div>`;
       }
-
-      //chama o endpoint do armazenamento Mongodb
-
     }
 
     // Add event listener to the button
