@@ -57,6 +57,36 @@
         const result = await model.generateContent(promptcompleto);
         const aiResponse = result.response.text();
 
+        //adicionar uma chamada para o end point localhost:5000/api/mensagem enviando dados para armazenar a conversa no mongo db     const { usuario, mensagem } = req.body;
+
+        // Prepare data to send to the server
+        const mensagemData = {
+          usuario: userPrompt,
+          mensagem: aiResponse,
+        };
+
+        // Make a POST request to save the conversation
+        await fetch('http://localhost:5000/api/mensagem', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(mensagemData),
+        });
+
+        const response = await fetch('http://localhost:5000/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        
+        const data = await response.json();
+        document.getElementById('response').innerText =
+          `IP: ${data.ip}, Timestamp: ${data.timestamp}`;
+
+
         // Append AI response to chat
         responseDiv.innerHTML += `<div><strong>Rob:</strong> ${aiResponse}</div>`;
         responseDiv.scrollTop = responseDiv.scrollHeight; // Auto-scroll to latest message
